@@ -31,7 +31,7 @@ ENV SUPERVISOR_LOG_DIR "/home/LogFiles/supervisor"
 # --------
 RUN set -ex \
     && apk update \
-    && apk add --no-cache openssl git net-tools tcpdump tcptraceroute vim curl wget bash\
+    && apk add --no-cache openssl git net-tools tcpdump tcptraceroute vim curl wget bash htop\
 	&& cd /usr/bin \
 	&& wget http://www.vdberg.org/~richard/tcpping \
 	&& chmod 777 tcpping \
@@ -288,6 +288,9 @@ COPY logrotate.d/. /etc/logrotate.d/
 RUN chmod -R 444 /etc/logrotate.d
 # supervisor
 COPY supervisord.conf /etc/
+
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+
 #
 # =====
 # final
