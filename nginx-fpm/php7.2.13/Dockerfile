@@ -237,85 +237,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 # ------
 # mariadb
 # ------
-#RUN \
-    #export CPU=`cat /proc/cpuinfo | grep -c processor` \
-    # Add testing repo
-    && echo http://nl.alpinelinux.org/alpine/edge/testing >> /etc/apk/repositories \
-    # Install packages
-    && apk add --no-cache \
-        # Install utils
-        pwgen openssl ca-certificates \
-        # Installing needed libs
-        libstdc++ libaio gnutls ncurses-libs libcurl libxml2 boost proj4 geos \
-        # Install MariaDB build deps
-        alpine-sdk cmake ncurses-dev gnutls-dev curl-dev libxml2-dev libaio-dev linux-headers bison boost-dev \
-    # Update CA certs
-    && update-ca-certificates \
-    # Add group and user for mysql
-    && addgroup -S -g 500 mysql \
-    && adduser -S -D -H -u 500 -G mysql -g "MySQL" mysql \
-    # Unpack mariadb    
-	# http://ftp.hosteurope.de/mirror/archive.mariadb.org//mariadb-10.1.26/source/mariadb-10.1.26.tar.gz
-	&& mkdir -p /opt/src \
-	&& wget -O /opt/src/mdb.tar.gz http://ftp.hosteurope.de/mirror/archive.mariadb.org//mariadb-$MARIADB_VER/source/mariadb-$MARIADB_VER.tar.gz \
-    && mkdir -p /etc/mysql \
-    && cd /opt/src && tar -xf mdb.tar.gz && rm mdb.tar.gz \
-    # Download and unpack Judy (needed for OQGraph)
-    && wget -O /opt/src/judy.tar.gz http://downloads.sourceforge.net/project/judy/judy/Judy-${JUDY_VER}/Judy-${JUDY_VER}.tar.gz \
-    && cd /opt/src && tar -xf judy.tar.gz && rm judy.tar.gz \
-    # Build Judy
-    && cd /opt/src/judy-${JUDY_VER} \
-    && CFLAGS="-O2 -s" CXXFLAGS="-O2 -s" ./configure \
-    && make \
-    && make install \
-    # Build maridb
-    && mkdir -p /tmp/_ \
-    && cd /opt/src/mariadb-${MARIADB_VER} \
-    && cmake . \
-        -DCMAKE_BUILD_TYPE=MinSizeRel \
-        -DCOMMON_C_FLAGS="-O3 -s -fno-omit-frame-pointer -pipe" \
-        -DCOMMON_CXX_FLAGS="-O3 -s -fno-omit-frame-pointer -pipe" \
-        -DCMAKE_INSTALL_PREFIX=/usr \
-        -DSYSCONFDIR=/etc/mysql \
-        -DMYSQL_DATADIR=/var/lib/mysql \
-        -DMYSQL_UNIX_ADDR=/run/mysqld/mysqld.sock \
-        -DDEFAULT_CHARSET=utf8 \
-        -DDEFAULT_COLLATION=utf8_general_ci \
-        -DENABLED_LOCAL_INFILE=ON \
-        -DINSTALL_INFODIR=share/mysql/docs \
-        -DINSTALL_MANDIR=/tmp/_/share/man \
-        -DINSTALL_PLUGINDIR=lib/mysql/plugin \
-        -DINSTALL_SCRIPTDIR=bin \
-        # -DINSTALL_INCLUDEDIR=/tmp/_/include/mysql \
-        -DINSTALL_DOCREADMEDIR=/tmp/_/share/mysql \
-        -DINSTALL_SUPPORTFILESDIR=share/mysql \
-        -DINSTALL_MYSQLSHAREDIR=share/mysql \
-        -DINSTALL_DOCDIR=/tmp/_/share/mysql/docs \
-        -DINSTALL_SHAREDIR=share/mysql \
-        -DWITH_READLINE=ON \
-        -DWITH_ZLIB=system \
-        -DWITH_SSL=system \
-        -DWITH_LIBWRAP=OFF \
-        -DWITH_JEMALLOC=no \
-        -DWITH_EXTRA_CHARSETS=complex \
-        -DPLUGIN_ARCHIVE=STATIC \
-        -DPLUGIN_BLACKHOLE=DYNAMIC \
-        -DPLUGIN_INNOBASE=STATIC \
-        -DPLUGIN_PARTITION=AUTO \
-        -DPLUGIN_CONNECT=NO \
-        -DPLUGIN_TOKUDB=NO \
-        -DPLUGIN_FEEDBACK=NO \
-        -DPLUGIN_OQGRAPH=YES \
-        -DPLUGIN_FEDERATED=NO \
-        -DPLUGIN_FEDERATEDX=NO \
-        -DWITHOUT_FEDERATED_STORAGE_ENGINE=1 \
-        -DWITHOUT_EXAMPLE_STORAGE_ENGINE=1 \
-        -DWITHOUT_PBXT_STORAGE_ENGINE=1 \
-        -DWITHOUT_ROCKSDB_STORAGE_ENGINE=1 \
-        -DWITH_EMBEDDED_SERVER=OFF \
-        -DWITH_UNIT_TESTS=OFF \
-        -DENABLED_PROFILING=OFF \
-        -DENABLE_DEBUG_SYNC=OFF \
+
     #&& make -j${CPU} \
 	&& make -j "$(nproc)" \
     # Install
@@ -395,9 +317,9 @@ COPY zz-docker.conf /usr/local/etc/php-fpm.d/zz-docker.conf
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx_conf/. /etc/nginx/conf.d/
 # mariadb
-COPY mariadb.cnf /etc/mysql/my.cnf
+#COPY mariadb.cnf /etc/mysql/my.cnf
 # phpmyadmin
-COPY phpmyadmin_src/. $PHPMYADMIN_SOURCE/
+#COPY phpmyadmin_src/. $PHPMYADMIN_SOURCE/
 # log rotater
 COPY logrotate.conf /etc/logrotate.conf
 RUN chmod 444 /etc/logrotate.conf
