@@ -238,45 +238,6 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 # mariadb
 # ------
 
-    #&& make -j${CPU} \
-	&& make -j "$(nproc)" \
-    # Install
-    #&& make -j${CPU} install \
-	&& make -j "$(nproc)" install \
-    # Copy default config, and remove deprecates and not working things
-    && cp /usr/share/mysql/my-large.cnf /etc/mysql/my.cnf \
-    && echo "!includedir /etc/mysql/conf.d/" >>/etc/mysql/my.cnf \
-    && sed -i '/# Try number of CPU/d' /etc/mysql/my.cnf \
-    && sed -i '/thread_concurrency = 8/d' /etc/mysql/my.cnf \
-    && sed -i '/innodb_additional_mem_pool_size/d' /etc/mysql/my.cnf \
-    && sed -i 's/log-bin=/#log-bin=/' /etc/mysql/my.cnf \
-    && sed -i 's/binlog_format=/#binlog_format=/' /etc/mysql/my.cnf \
-    && sed -i 's/#innodb_/innodb_/' /etc/mysql/my.cnf \
-    # Clean everything
-    && rm -rf /opt/src \
-    && rm -rf /tmp/_ \
-    && rm -rf /usr/sql-bench \
-    && rm -rf /usr/mysql-test \
-    && rm -rf /usr/data \
-    && rm -rf /usr/lib/python2.7 \
-    && rm -rf /usr/bin/mysql_client_test \
-    && rm -rf /usr/bin/mysqltest \
-    # Remove packages
-    && apk del \
-        ca-certificates \
-        # Remove no more necessary build dependencies
-        alpine-sdk cmake ncurses-dev gnutls-dev curl-dev libxml2-dev libaio-dev linux-headers bison boost-dev \
-    # Create needed directories
-    && mkdir -p /var/lib/mysql \
-    && mkdir -p /run/mysqld \
-    && mkdir /etc/mysql/conf.d \
-    && mkdir -p /opt/mariadb/pre-init.d \
-    && mkdir -p /opt/mariadb/post-init.d \
-    && mkdir -p /opt/mariadb/pre-exec.d \
-    # Set permissions
-    && chown -R mysql:mysql /var/lib/mysql \
-    && chown -R mysql:mysql /run/mysqld\
-    && chmod -R 755 /opt/mariadb \
 # -------------
 # log rotate & supervisor
 # -------------
@@ -287,7 +248,7 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 # -------------
 # phpmyadmin
 # -------------
-    && mkdir -p $PHPMYADMIN_SOURCE \
+#    && mkdir -p $PHPMYADMIN_SOURCE \
 # ----------
 # ~. upgrade/clean up
 # ----------
@@ -299,8 +260,8 @@ RUN GPG_KEYS=B0F4253373F8F6F510D42178520A9993A1C052F8 \
 # =========
 RUN set -ex\    		
 	##
-	&& rm -rf /var/log/mysql \
-	&& ln -s $MARIADB_LOG_DIR /var/log/mysql \
+#	&& rm -rf /var/log/mysql \
+#	&& ln -s $MARIADB_LOG_DIR /var/log/mysql \
 	##
 	&& rm -rf /var/log/nginx \
 	&& ln -s $NGINX_LOG_DIR /var/log/nginx \
