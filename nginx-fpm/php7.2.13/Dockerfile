@@ -58,10 +58,10 @@ RUN set -ex \
             freetype-dev                    \
             libjpeg-turbo-dev               \
             libpng-dev                      \
-			exiftool                        \
-			pngcrush                        \
-			jpegoptim                       \
-			optipng                         \
+#			exiftool                        \
+#			pngcrush                        \
+#			jpegoptim                       \
+#			optipng                         \
             gmp                             \
             gmp-dev                         \
             libmemcached-dev                \
@@ -84,14 +84,14 @@ RUN set -ex \
 		opcache 		\
 		pdo_mysql 		\
 		pdo_pgsql 		\
-		bcmath 			\
-		calendar 		\
-		xsl 			\
-		zip 			\
-		soap 			\
-		gmp 			\
-		redis 			\
-		iconv 			\
+#		bcmath 			\
+#		calendar 		\
+#		xsl 			\
+#		zip 			\
+#		soap 			\
+#		gmp 			\
+#		redis 			\
+#		iconv 			\
 		gd 				\
 		memcached 		\
 	&& docker-php-ext-enable apcu imagick \
