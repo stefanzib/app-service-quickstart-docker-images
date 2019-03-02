@@ -84,16 +84,16 @@ RUN set -ex \
 		opcache 		\
 		pdo_mysql 		\
 		pdo_pgsql 		\
-#		bcmath 			\
-#		calendar 		\
-#		xsl 			\
-#		zip 			\
-#		soap 			\
-#		gmp 			\
-#		redis 			\
-#		iconv 			\
-#		gd 				\
-#		memcached 		\
+		bcmath 			\
+		calendar 		\
+		xsl 			\
+		zip 			\
+		soap 			\
+		gmp 			\
+		redis 			\
+		iconv 			\
+		gd 				\
+		memcached 		\
 	&& docker-php-ext-enable apcu  \
     && docker-php-source delete \
     && runDeps="$( \
