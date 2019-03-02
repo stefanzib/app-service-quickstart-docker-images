@@ -90,10 +90,10 @@ RUN set -ex \
 		zip 			\
 		soap 			\
 		gmp 			\
-		redis 			\
-		iconv 			\
-#		gd 				\
-#		memcached 		\
+#		redis 			\
+#		iconv 			\
+		gd 				\
+		memcached 		\
 	&& docker-php-ext-enable apcu  \
     && docker-php-source delete \
     && runDeps="$( \
