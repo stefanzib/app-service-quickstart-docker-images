@@ -38,7 +38,7 @@ RUN set -ex \
 # ========
 # install the PHP extensions we need and xdebug
 # ======== 
-    && apk add --no-cache                  \
+    && apk add --no-cache                   \
             --virtual .build-dependencies   \
                 $PHPIZE_DEPS                \
                 zlib-dev                    \
@@ -70,30 +70,30 @@ RUN set -ex \
             libssh2                         \
             libssh2-dev                     \
             libxslt-dev                     \    
-    && docker-php-source extract \
+    && docker-php-source extract            \
     && pecl install xdebug-beta apcu imagick  \
 	&& docker-php-ext-configure memcached     \
 	&& docker-php-ext-configure gd            \
-            --with-gd \
-			--with-webp-dir \
+            --with-gd                         \
+			--with-webp-dir                   \
 			--with-freetype-dir=/usr/include/ \
-			--with-png-dir=/usr/include/ \
-			--with-jpeg-dir=/usr/include/; \
-    && docker-php-ext-install -j "$(nproc)" \
-	    mysqli \
-		opcache \
-		pdo_mysql \
-		pdo_pgsql \
-		bcmath \
-		calendar \
-		xsl \
-		zip \
-		soap \
-		gmp \
-		redis \
-		iconv \
-		gd \
-		memcached \
+			--with-png-dir=/usr/include/      \
+			--with-jpeg-dir=/usr/include/     \
+    && docker-php-ext-install -j "$(nproc)"   \
+	    mysqli    		\
+		opcache 		\
+		pdo_mysql 		\
+		pdo_pgsql 		\
+		bcmath 			\
+		calendar 		\
+		xsl 			\
+		zip 			\
+		soap 			\
+		gmp 			\
+		redis 			\
+		iconv 			\
+		gd 				\
+		memcached 		\
 	&& docker-php-ext-enable apcu imagick \
     && docker-php-source delete \
     && runDeps="$( \
