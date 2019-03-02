@@ -93,7 +93,7 @@ RUN set -ex \
 #		redis 			\
 #		iconv 			\
 		gd 				\
-		memcached 		\
+#		memcached 		\
 	&& docker-php-ext-enable apcu  \
     && docker-php-source delete \
     && runDeps="$( \
