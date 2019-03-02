@@ -90,7 +90,7 @@ RUN set -ex \
 		zip 			\
 		soap 			\
 		gmp 			\
-		redis 			\
+#		redis 			\
 		iconv 			\
 		gd 				\
 #		memcached 		\
