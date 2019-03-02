@@ -58,6 +58,7 @@ RUN set -ex \
             freetype-dev                    \
             libjpeg-turbo-dev               \
             libpng-dev                      \
+			libwebp-dev						\
 			exiftool                        \
 			pngcrush                        \
 			jpegoptim                       \
