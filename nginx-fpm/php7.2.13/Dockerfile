@@ -58,21 +58,43 @@ RUN set -ex \
             freetype-dev                    \
             libjpeg-turbo-dev               \
             libpng-dev                      \
+			exiftool                        \
+			pngcrush                        \
+			jpegoptim                       \
+			optipng                         \
             gmp                             \
             gmp-dev                         \
             libmemcached-dev                \
             imagemagick-dev                 \
+			imagemagick						\
             libssh2                         \
             libssh2-dev                     \
             libxslt-dev                     \    
     && docker-php-source extract \
-    && pecl install xdebug-beta apcu \
+    && pecl install xdebug-beta apcu imagick  \
+	&& docker-php-ext-configure memcached     \
+	&& docker-php-ext-configure gd            \
+            --with-gd \
+			--with-webp-dir \
+			--with-freetype-dir=/usr/include/ \
+			--with-png-dir=/usr/include/ \
+			--with-jpeg-dir=/usr/include/; \
     && docker-php-ext-install -j "$(nproc)" \
 	    mysqli \
 		opcache \
 		pdo_mysql \
 		pdo_pgsql \
-	&& docker-php-ext-enable apcu \
+		bcmath \
+		calendar \
+		xsl \
+		zip \
+		soap \
+		gmp \
+		redis \
+		iconv \
+		gd \
+		memcached \
+	&& docker-php-ext-enable apcu imagick \
     && docker-php-source delete \
     && runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
