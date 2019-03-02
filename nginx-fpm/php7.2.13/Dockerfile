@@ -58,15 +58,15 @@ RUN set -ex \
             freetype-dev                    \
             libjpeg-turbo-dev               \
             libpng-dev                      \
-#			exiftool                        \
-#			pngcrush                        \
-#			jpegoptim                       \
-#			optipng                         \
+			exiftool                        \
+			pngcrush                        \
+			jpegoptim                       \
+			optipng                         \
             gmp                             \
             gmp-dev                         \
             libmemcached-dev                \
             imagemagick-dev                 \
-#			imagemagick						\
+			imagemagick						\
             libssh2                         \
             libssh2-dev                     \
             libxslt-dev                     \    
