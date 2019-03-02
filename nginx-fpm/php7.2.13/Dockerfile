@@ -90,8 +90,8 @@ RUN set -ex \
 		zip 			\
 		soap 			\
 		gmp 			\
-#		redis 			\
-#		iconv 			\
+		redis 			\
+		iconv 			\
 #		gd 				\
 #		memcached 		\
 	&& docker-php-ext-enable apcu  \
