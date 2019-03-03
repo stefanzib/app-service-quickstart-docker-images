@@ -72,7 +72,7 @@ RUN set -ex \
             libssh2-dev                     \
             libxslt-dev                     \    
     && docker-php-source extract            \
-    && pecl install xdebug-beta apcu   \
+    && pecl install xdebug-beta apcu imagick  \
 #	&& docker-php-ext-configure memcached     \
 	&& docker-php-ext-configure gd            \
             --with-gd                         \
@@ -95,7 +95,7 @@ RUN set -ex \
 		iconv 			\
 		gd 				\
 #		memcached 		\
-	&& docker-php-ext-enable apcu  \
+	&& docker-php-ext-enable apcu imagick \
     && docker-php-source delete \
     && runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
