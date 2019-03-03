@@ -95,7 +95,8 @@ RUN set -ex \
 		iconv 			\
 		gd 				\
 #		memcached 		\
-	&& docker-php-ext-enable apcu imagick \
+		exif			\
+	&& docker-php-ext-enable apcu imagick exif \
     && docker-php-source delete \
     && runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \
