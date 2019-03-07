@@ -66,8 +66,10 @@ RUN set -ex \
             gmp                             \
             gmp-dev                         \
             libmemcached-dev                \
-            imagemagick-dev                 \
+			file							\
 			imagemagick						\
+			imagemagick-libs				\
+            imagemagick-dev                 \
             libssh2                         \
             libssh2-dev                     \
             libxslt-dev                     \    
@@ -96,7 +98,8 @@ RUN set -ex \
 		gd 				\
 #		memcached 		\
 		exif			\
-	&& docker-php-ext-enable apcu imagick exif \
+	&& docker-php-ext-enable apcu exif \
+	&& docker-php-ext-enable --ini-name 20-imagick.ini imagick \
     && docker-php-source delete \
     && runDeps="$( \
 		scanelf --needed --nobanner --format '%n#p' --recursive /usr/local \

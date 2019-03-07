@@ -1,0 +1,72 @@
+-bash-4.2$ php -m
+[PHP Modules]
+bcmath
+bz2
+calendar
+Core
+ctype
+curl
+date
+dba
+dom
+enchant
+exif
+fileinfo
+filter
+ftp
+gd
+gettext
+gmp
+hash
+iconv
+imagick
+imap
+intl
+ionCube Loader
+json
+ldap
+libxml
+mbstring
+mysqli
+mysqlnd
+odbc
+openssl
+pcntl
+pcre
+PDO
+pdo_mysql
+PDO_ODBC
+pdo_pgsql
+pdo_sqlite
+pgsql
+Phar
+posix
+pspell
+readline
+redis
+Reflection
+session
+SimpleXML
+soap
+sockets
+sodium
+SPL
+sqlite3
+standard
+sysvmsg
+sysvsem
+sysvshm
+tidy
+tokenizer
+xml
+xmlreader
+xmlrpc
+xmlwriter
+xsl
+Zend OPcache
+zip
+zlib
+
+[Zend Modules]
+Zend OPcache
+the ionCube PHP Loader (enabled) + Intrusion Protection from ioncube24.com (unconfigured)
