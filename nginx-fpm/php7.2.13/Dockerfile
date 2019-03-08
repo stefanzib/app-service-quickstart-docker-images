@@ -38,7 +38,7 @@ RUN set -ex \
 # ========
 # install the PHP extensions we need and xdebug
 # ======== 
-    && apk add --no-cache                   \
+    && apk add --no-cache                \
             --virtual .build-dependencies   \
                 $PHPIZE_DEPS                \
                 zlib-dev                    \
@@ -295,6 +295,7 @@ RUN set -ex\
 	##
 	&& rm -rf /var/log/supervisor \
 	&& ln -s $SUPERVISOR_LOG_DIR /var/log/supervisor 
+RUN apk add --update imagemagick
 # ssh
 COPY sshd_config /etc/ssh/ 
 # php

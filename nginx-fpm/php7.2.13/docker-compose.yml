@@ -1,0 +1,15 @@
+version: '2'
+services:
+
+  # The Application
+  app:
+    #    image: ${DOCKER_REGISTRY}/app:${APP_VERSION}
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /home/site/wwwroot/
+    volumes:
+      - ./../../../../../www/jti/services.chazapp.co:/home/site/wwwroot
+      - ./www:/var/www/html
+    ports:
+      - 80:80
