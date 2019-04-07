@@ -87,7 +87,7 @@ RUN set -ex \
 		opcache 		\
 		pdo_mysql 		\
 		pdo_pgsql 		\
-#		bcmath 			\
+		bcmath 			\
 		calendar 		\
 		xsl 			\
 		zip 			\
