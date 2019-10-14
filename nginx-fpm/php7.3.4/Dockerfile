@@ -70,6 +70,7 @@ RUN set -ex \
             file							\
 			imagemagick						\
 			imagemagick-libs				\
+			libzip-dev						\
             libssh2                         \
             libssh2-dev                     \
             libxslt-dev                     \    
