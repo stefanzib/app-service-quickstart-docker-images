@@ -275,6 +275,7 @@ RUN set -ex \
 	&& apk add logrotate supervisor \	
 	# check log files once every minute, triaged by crond.
 	&& echo "*       *       *       *       *       sh /usr/local/bin/triage-rotate.sh" >> /etc/crontabs/root \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/www-data \
 # ----------
 # ~. upgrade/clean up
 # ----------
