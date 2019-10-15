@@ -312,6 +312,10 @@ COPY logrotate.d/. /etc/logrotate.d/
 RUN chmod -R 444 /etc/logrotate.d
 # supervisor
 COPY supervisord.conf /etc/
+
+# composer
+RUN php -r "readfile('http://getcomposer.org/installer');" | php -- --install-dir=/usr/bin/ --filename=composer
+
 #
 # =====
 # final
