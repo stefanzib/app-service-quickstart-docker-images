@@ -276,6 +276,11 @@ RUN set -ex \
 	# check log files once every minute, triaged by crond.
 	&& echo "*       *       *       *       *       sh /usr/local/bin/triage-rotate.sh" >> /etc/crontabs/root \
 	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan schedule:run >> /dev/null 2>&1" >> /etc/crontabs/www-data \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan cancelorders:timeout >> /dev/null 2>&1" >> /etc/crontabs/www-data \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan deliveryproposals:timeout >> /dev/null 2>&1" >> /etc/crontabs/www-data \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan delivery:inactivereminder >> /dev/null 2>&1" >> /etc/crontabs/www-data \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan orders:timeoutreminder >> /dev/null 2>&1" >> /etc/crontabs/www-data \
+	&& echo "*       *       *       *       *       php /home/site/wwwroot/artisan users:checkonline >> /dev/null 2>&1" >> /etc/crontabs/www-data \
 # ----------
 # ~. upgrade/clean up
 # ----------
